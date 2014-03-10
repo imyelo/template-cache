@@ -1,1 +1,1 @@
-module.exports = require('./lib/fileStore');
+module.exports = require('./lib/cache');
