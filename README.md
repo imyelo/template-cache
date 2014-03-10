@@ -1,2 +1,2 @@
-fileStore.js
+fileStore
 ============

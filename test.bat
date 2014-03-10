@@ -1,0 +1,1 @@
+set NODE_ENV=fileStore:test&node ./lib/fileStore 
