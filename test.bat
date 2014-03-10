@@ -1,1 +1,1 @@
-set NODE_ENV=fileStore:test&node ./lib/fileStore 
+set NODE_ENV=templateCache:test&node ./lib/cache
