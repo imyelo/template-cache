@@ -59,15 +59,19 @@ module.exports = function (req, res, next) {
 ## Options
 the ``load`` method can be set with these options.
 ### extension
-defaults: '.tpl'  
-the extension of the files  
+*defaults: '.tpl'*  
+only the files with this extension will be cached
 
 ### autocrlf
-defaults: true  
-auto convert the crlf to lf (linux mode)  
+*defaults: true*  
+auto convert the crlf (windows mode) to lf (linux mode)  
 
 ### slim
-defaults: false  
+*defaults: false*  
+cleaning the **indents** and **line feeds** in the files.  
+It's useful for simplifing the content.  
+
+**tip: You can type ``\n`` when you need a line feed with slim mode.**
 
 example.tpl:
 ```
@@ -82,13 +86,13 @@ example.tpl:
 <% } %>
 ```
 
-the value of ``cache.require('example')`` when ``options.slim`` is true:
+the value of ``cache.require('example')`` with **slim**:
 ```
 <% if (foo) { %>foo<% if (bar) { %>bar\n<% } %><% } %><% if (baz) { %>baz<% } %>
 ```
 
 #### Why slim
-render without slim:
+render example.tpl without slim mode:
 ```
 var cache = require('template-cache');
 cache.load('./tpl');
@@ -101,7 +105,7 @@ output:
   baz
 ```
 
-render with slim:
+render example.tpl with slim mode:
 ```
 var cache = require('template-cache');
 cache.load('./tpl', {slim: true});
@@ -113,10 +117,27 @@ foobar
 baz
 ```
 
+If you want to get the same result as above one without slim mode, you should write a example.tpl like it:
+```
+<%
+if (foo) { 
+  %>foo<%
+  if (bar) {
+    %>bar\n<%
+  } %><%
+} %><%
+if (baz) {
+  %>baz<%
+} %>
+```
+What a suffering!
+
+
 ### engine
-defaults: null  
-``engine`` should be the compile method of template render engine like artTemplate, ejs, handlebars and so on.  
-Or the ``require`` method will return the origin content.
+*defaults: null*  
+``engine`` should be the compile method of the template render engine like artTemplate, ejs, handlebars and so on.  
+If you keep this value null, the ``require`` method will return the origin content.  
+Here is a simple example:  
 
 without options.engine:
 ```
@@ -136,11 +157,19 @@ they will return the same result.
 
 ## Method
 ### load(basepath, options)
-The ``load`` method should be called once before the app start.
+The ``load`` method should be called once at least before the app launch.
+
 ### require(filename)
+The ``require`` method will return the origin content without ``options.engine``, otherwise return the compiled template rendering function.
 
 ### clear()
+clear cache
 
 ### refresh()
+refresh the cache
 
 ### toJSON()
+return a json style object which has key that means filename and value means content
+
+## LICENSE
+the MIT license
