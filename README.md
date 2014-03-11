@@ -32,7 +32,7 @@ var artTemplate = require('art-template');
 // cache template files
 templateCache.load(path.join(__dirname, './tpl'), {
   slim: true,
-  crlf: true,
+  autocrlf: true,
   extension: '.tpl',
   engine: artTemplate.compile
 });
@@ -62,9 +62,9 @@ the ``load`` method can be set with these options.
 defaults: '.tpl'  
 the extension of the files  
 
-### crlf
+### autocrlf
 defaults: true  
-auto convert the crlf to linux mode ('\r\n' to '\n')  
+auto convert the crlf to lf (linux mode)  
 
 ### slim
 defaults: false  
