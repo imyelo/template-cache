@@ -1,2 +1,2 @@
-fileStore
+template cache
 ============
