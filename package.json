@@ -1,6 +1,7 @@
 {
   "name": "template-cache",
-  "version": "0.1.3",
+  "description": "cache template files in memory",
+  "version": "0.1.4",
   "author": "yelo",
   "repository": {
     "type": "git",

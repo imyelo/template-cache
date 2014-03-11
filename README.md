@@ -121,8 +121,9 @@ Or the ``require`` method will return the origin content.
 without options.engine:
 ```
 var cache = require('template-cache');
+var artTemplate = require('art-template');
 cache.load('./tpl');
-return compile(cache.require('example'))({foo: true, bar: true, baz: true});
+return artTemplate.compile(cache.require('example'))({foo: true, bar: true, baz: true});
 ```
 with options.engine:
 ```
