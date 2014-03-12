@@ -59,15 +59,19 @@ module.exports = function (req, res, next) {
 ## Options
 the ``load`` method can be set with these options.
 ### extension
-*defaults: '.tpl'*  
+*default: '.tpl'*  
 only the files with this extension will be cached
 
+### recursive
+*default: false*
+the program will cache the files in all subpaths when this option is true.    
+
 ### autocrlf
-*defaults: true*  
+*default: true*  
 auto convert the crlf (windows mode) to lf (linux mode)  
 
 ### slim
-*defaults: false*  
+*default: false*  
 cleaning the **indents** and **line feeds** in the files.  
 It's useful for simplifing the content.  
 
@@ -134,7 +138,7 @@ What a suffering!
 
 
 ### engine
-*defaults: null*  
+*default: null*  
 ``engine`` should be the compile method of the template render engine like artTemplate, ejs, handlebars and so on.  
 If you keep this value null, the ``require`` method will return the origin content.  
 Here is a simple example:  
