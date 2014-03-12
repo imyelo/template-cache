@@ -18,6 +18,12 @@ describe('template-cache', function () {
         expect(cache.require('a')).to.be.equal('foobarbaz');
         // expect(cache.toJSON());
       });
+      it('3 work', function () {
+        cache.load(basepath, {slim: true, extension: ext, recursive: true});
+        console.log(cache.toJSON());
+        expect(cache.require('a')).to.be.equal('foobarbaz');
+        // expect(cache.toJSON());
+      });
     });
   });
 });
