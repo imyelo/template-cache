@@ -175,5 +175,18 @@ refresh the cache
 ### toJSON()
 return a json style object which has key that means filename and value means content
 
+### namespace(ns)
+``namespace`` method allow you cache different groups of templates by returning a new cache box  
+example:
+```
+var cache = require('template-cache');
+cache.namespace('yelo').load('./tpl');
+console.log(cache.namespace('yelo').require('example')({foo: true, bar: true, baz: true}));
+
+var tests = cache.namespace('test');
+tests.loda('./test/tpl');
+console.log(test.require('foobar')({foo: bar}));
+```
+
 ## LICENSE
 the MIT license
