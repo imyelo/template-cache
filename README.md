@@ -95,7 +95,7 @@ the value of ``cache.require('example')`` with **slim**:
 <% if (foo) { %>foo<% if (bar) { %>bar\n<% } %><% } %><% if (baz) { %>baz<% } %>
 ```
 
-#### Why slim
+#### Why slim?
 render example.tpl without slim mode:
 ```
 var cache = require('template-cache');
@@ -134,7 +134,7 @@ if (baz) {
   %>baz<%
 } %>
 ```
-What a suffering!
+What a suffering
 
 
 ### engine
@@ -167,13 +167,13 @@ The ``load`` method should be called once at least before the app launch.
 The ``require`` method will return the origin content without ``options.engine``, otherwise return the compiled template rendering function.
 
 ### clear()
-clear cache
+clear cache box
 
 ### refresh()
-refresh the cache
+refresh the cache box
 
 ### toJSON()
-return a json style object which has key that means filename and value means content
+return a json style object which has the key as the filename and the value as the content
 
 ### namespace(ns)
 ``namespace`` method allow you cache different groups of templates by returning a new cache box  
@@ -184,7 +184,7 @@ cache.namespace('yelo').load('./tpl');
 console.log(cache.namespace('yelo').require('example')({foo: true, bar: true, baz: true}));
 
 var tests = cache.namespace('test');
-tests.loda('./test/tpl');
+tests.load('./test/tpl');
 console.log(test.require('foobar')({foo: bar}));
 ```
 
