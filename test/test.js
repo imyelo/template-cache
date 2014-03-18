@@ -24,6 +24,12 @@ describe('template-cache', function () {
         expect(cache.require('a')).to.be.equal('foobarbaz');
         // expect(cache.toJSON());
       });
+      it('namespace work', function () {
+        cache.namespace('d').load(path.join(basepath, './d.tpl'), {slim: true, extension: ext, recursive: true});
+        console.log(cache.namespace('d').toJSON());
+        expect(cache.namespace('d').require('e')).to.be.equal('adsf');
+        // expect(cache.toJSON());
+      });
     });
   });
 });
