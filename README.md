@@ -6,19 +6,13 @@ files:
 ```
 - app
   - controller
-    - ...
   - action
-    - ...
   - view
     - foo.js
-    - ...
   - tpl
     - foo.tpl
     - bar.tpl
-    - ...
   - app.js
-  - ...
-- ...
 ```
 
 app/app.js
@@ -54,6 +48,15 @@ module.exports = function (req, res, next) {
   var content = template.require('bar')(data);
   ...
 };
+```
+
+## Namespace
+In one node process, ``require('template-cache')`` share one same instance. So, if you wanna **load** two or more template pathes, please try **namespace** method.
+```
+var loggerTemplate = require('template-cache')('logger');
+var applicationTemplate = require('template-cache')('app');
+loggerTemplate.load(path.join(__dirname, './logger/tpl'), {...});
+loggerTemplate.load(path.join(__dirname, './app/tpl'), {...});
 ```
 
 ## Options
@@ -134,7 +137,7 @@ if (baz) {
   %>baz<%
 } %>
 ```
-What a suffering
+no~~~
 
 
 ### engine
@@ -143,20 +146,26 @@ What a suffering
 If you keep this value null, the ``require`` method will return the origin content.  
 Here is a simple example:  
 
-without options.engine:
+**without options.engine**:
 ```
 var cache = require('template-cache');
 var artTemplate = require('art-template');
 cache.load('./tpl');
+```
+then compile and render the template:
+```
 return artTemplate.compile(cache.require('example'))({foo: true, bar: true, baz: true});
 ```
-with options.engine:
+
+
+**with options.engine:**
 ```
 var cache = require('template-cache');
 var artTemplate = require('art-template');
 cache.load('./tpl', {engine: artTemplate.compile});
 return cache.require('example'))({foo: true, bar: true, baz: true});
 ```
+
 they will return the same result.
 
 ## Method
