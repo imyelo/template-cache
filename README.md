@@ -53,10 +53,17 @@ module.exports = function (req, res, next) {
 ## Namespace
 In one node process, ``require('template-cache')`` share one same instance. So, if you wanna **load** two or more template pathes, please try **namespace** method.
 ```
-var loggerTemplate = require('template-cache')('logger');
-var applicationTemplate = require('template-cache')('app');
+var loggerTemplate = require('template-cache').namespace('logger');
+var applicationTemplate = require('template-cache').namespace('app');
+
+// load
 loggerTemplate.load(path.join(__dirname, './logger/tpl'), {...});
-loggerTemplate.load(path.join(__dirname, './app/tpl'), {...});
+applicationTemplate.load(path.join(__dirname, './app/tpl'), {...});
+
+
+// require
+console.log(loggerTemplate.require('foo'));
+console.log(applicationTemplate.require('bar'));
 ```
 
 ## Options
